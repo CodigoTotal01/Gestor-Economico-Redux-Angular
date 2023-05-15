@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
+
+import * as firebase from 'firebase/auth'
+import { User } from 'firebase/auth'; // importar User desde el modulo @angular/fire/compat/auth
+
+
 //UI class  -  for notifications
 import Swal from 'sweetalert2';
 
@@ -14,9 +19,10 @@ export class AuthService {
 
 
   initAuthListener(){
-      this.afAuth.authState.subscribe(fbUser => {
-         console.log(fbUser)
+      this.afAuth.authState.subscribe((fbUser ) => {
+          console.log(fbUser?.displayName)
       });
+
   }
 
   crearUsuario(nombre: string, email:string, password:string){
